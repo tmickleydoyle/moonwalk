@@ -14,8 +14,6 @@ var (
 )
 
 func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
-	// backDir := true
-
 	for path != string(os.PathSeparator) {
 
 		if path == "." || path == "" {
@@ -44,10 +42,6 @@ func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
 		}
 
 		path = filepath.Dir(path)
-
-		// if path == string(os.PathSeparator) {
-		// 	backDir = false
-		// }
 	}
 
 	return nil
