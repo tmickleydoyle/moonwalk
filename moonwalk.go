@@ -49,7 +49,7 @@ func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
 		path = filepath.Dir(path)
 
 		if path == string(os.PathSeparator) {
-			path = "."
+			return nil
 		}
 	}
 
