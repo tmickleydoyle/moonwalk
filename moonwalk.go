@@ -27,11 +27,15 @@ func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
 
 		names, err := ioutil.ReadDir(path)
 
-		err1 := walkFn(path, info, err)
-
-		if err != nil || err1 != nil {
-			return err1
+		if err != nil {
+			return err
 		}
+
+		// err1 := walkFn(path, info, err)
+
+		// if err != nil || err1 != nil {
+		// 	return err1
+		// }
 
 		for _, name := range names {
 			filename := filepath.Join(path, name.Name())
