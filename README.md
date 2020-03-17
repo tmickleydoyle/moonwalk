@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/tmickleydoyle/moonwalk/badge.svg?branch=master)](https://coveralls.io/github/tmickleydoyle/moonwalk?branch=master)
+
 
 # MoonWalk: Walk to the Root Directory
 
