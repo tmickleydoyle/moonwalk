@@ -5,16 +5,22 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
-func TestMoonWalkNoEndSep(t *testing.T) {
-	tmpDir, err := ioutil.TempDir("", "testDir")
+func TestMoonWalk(t *testing.T) {
+	tmpDir, err := ioutil.TempDir("", "moonwalktest")
+
+	if err != nil {
+		t.Fatal(err)
+	}
 
 	if err != nil {
 		fmt.Printf("unable to create test dir tree: %v\n", err)
 		return
 	}
+
 	defer os.RemoveAll(tmpDir)
 	os.Chdir(tmpDir)
 
@@ -24,9 +30,13 @@ func TestMoonWalkNoEndSep(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		fmt.Printf("visited file or dir: %q\n", path)
+		if !strings.HasPrefix(filepath.Dir(tmpDir), filepath.Dir(path)) {
+			t.Errorf("expected moonwalk path to be in %s: %s", path, tmpDir)
+		}
+
 		return nil
 	})
+
 	if err != nil {
 		t.Fatal(err)
 	}

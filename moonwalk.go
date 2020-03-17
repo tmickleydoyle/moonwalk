@@ -13,6 +13,7 @@ var (
 	lstat   = os.Lstat
 	pathSep = string(os.PathSeparator)
 	SkipDir = errors.New("skip this directory")
+	PathErr = errors.New("path to directory is not a string")
 )
 
 func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
@@ -63,6 +64,7 @@ func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
 
 func Slide(root string, walkFn WalkFunc) error {
 	info, err := os.Lstat(root)
+
 	if err != nil {
 		err = walkFn(root, nil, err)
 	} else {
