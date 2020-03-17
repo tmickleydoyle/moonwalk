@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/tmickleydoyle/moonwalk/badge.svg?branch=master)](https://coveralls.io/github/tmickleydoyle/moonwalk?branch=master)
+
 # MoonWalk: Walk to the Root Directory
 
 MoonWalk travels the file tree from a child directory back to the root directory calling walkFn for each file or direcory in the path back. The walkFn function will handle the errors from the visited files and directories.
