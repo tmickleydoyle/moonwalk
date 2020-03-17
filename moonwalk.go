@@ -1,7 +1,6 @@
 package moonwalk
 
 import (
-	"errors"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -12,8 +11,6 @@ type WalkFunc func(path string, info os.FileInfo, err error) error
 var (
 	lstat   = os.Lstat
 	pathSep = string(os.PathSeparator)
-	SkipDir = errors.New("skip this directory")
-	PathErr = errors.New("path to directory is not a string")
 )
 
 func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
@@ -30,12 +27,6 @@ func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
 		if err != nil {
 			return err
 		}
-
-		// err1 := walkFn(path, info, err)
-
-		// if err != nil || err1 != nil {
-		// 	return err1
-		// }
 
 		for _, name := range names {
 			filename := filepath.Join(path, name.Name())
