@@ -17,8 +17,6 @@ func TestMoonWalk(t *testing.T) {
 
     defer os.Remove(tmpFile.Name())
 
-    fmt.Println("Created File: " + tmpFile.Name())
-
     text := []byte("This is a golangcode.com example!")
     if _, err = tmpFile.Write(text); err != nil {
         t.Errorf("Failed to write to temporary file: %s", err)
@@ -41,5 +39,30 @@ func TestMoonWalk(t *testing.T) {
 	})
 	if err != nil {
 		t.Errorf("%s", err)
+	}
+}
+
+func TestMoonWalkNoDir(t *testing.T) {
+	_, err := ioutil.TempDir("", "tempFolder")
+
+	tmpDir := "."
+
+	err = Slide(tmpDir, func(path string, info os.FileInfo, err error) error {
+
+		fmt.Println(path)
+
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		if path != "" {
+			t.Errorf("expected moonwalk to skip: %s", path)
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		t.Fatal(err)
 	}
 }
