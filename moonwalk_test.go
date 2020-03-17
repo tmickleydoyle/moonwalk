@@ -4,65 +4,42 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"path/filepath"
-	"strings"
 	"testing"
 )
 
 func TestMoonWalk(t *testing.T) {
-	tmpDir, err := ioutil.TempDir("", "moonwalktest")
+	tmpDir := os.TempDir()
 
-	if err != nil {
-		t.Fatal(err)
+    tmpFile, err := ioutil.TempFile(tmpDir, "prefix-")
+    if err != nil {
+        t.Errorf("Cannot create temporary file: %s", err)
+    }
+
+    defer os.Remove(tmpFile.Name())
+
+    fmt.Println("Created File: " + tmpFile.Name())
+
+    text := []byte("This is a golangcode.com example!")
+    if _, err = tmpFile.Write(text); err != nil {
+        t.Errorf("Failed to write to temporary file: %s", err)
+    }
+
+    if err := tmpFile.Close(); err != nil {
+        t.Errorf("Failed to close file: %s", err)
 	}
-
-	if err != nil {
-		fmt.Printf("unable to create test dir tree: %v\n", err)
-		return
-	}
-
-	defer os.RemoveAll(tmpDir)
-	os.Chdir(tmpDir)
+	
+	tmpDir, err = ioutil.TempDir(tmpDir, "moonwalktest")
 
 	err = Slide(tmpDir, func(path string, info os.FileInfo, err error) error {
 
 		if err != nil {
-			t.Fatal(err)
-		}
-
-		if !strings.HasPrefix(filepath.Dir(tmpDir), filepath.Dir(path)) {
-			t.Errorf("expected moonwalk path to be in %s: %s", path, tmpDir)
+			t.Errorf("prevent panic by handling failure accessing a path %q: %v\n", path, err)
+			return err
 		}
 
 		return nil
 	})
-
 	if err != nil {
-		t.Fatal(err)
-	}
-}
-
-func TestMoonWalkNoDir(t *testing.T) {
-	_, err := ioutil.TempDir("", "")
-
-	tmpDir := "."
-
-	err = Slide(tmpDir, func(path string, info os.FileInfo, err error) error {
-
-		fmt.Println(path)
-
-		if err != nil {
-			t.Fatal(err)
-		}
-
-		if !strings.HasPrefix(filepath.Dir(tmpDir), filepath.Dir(path)) {
-			t.Errorf("expected moonwalk path to be in %s: %s", path, tmpDir)
-		}
-
-		return nil
-	})
-
-	if err != nil {
-		t.Fatal(err)
+		t.Errorf("%s", err)
 	}
 }
