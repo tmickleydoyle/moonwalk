@@ -30,14 +30,8 @@ func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
 			filename := filepath.Join(path, name.Name())
 			fileInfo, err := lstat(filename)
 
-			if err != nil {
-				if err := walkFn(filename, fileInfo, err); err != nil {
-					return err
-				}
-			} else {
-				if !fileInfo.IsDir() {
-					walkFn(filename, fileInfo, err)
-				}
+			if !fileInfo.IsDir() {
+				walkFn(filename, fileInfo, err)
 			}
 		}
 
