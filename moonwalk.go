@@ -12,7 +12,6 @@ var lstat = os.Lstat
 var pathSep = string(os.PathSeparator)
 
 func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
-
 	backDir := true
 
 	for backDir == true {
@@ -42,7 +41,9 @@ func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
 					return err
 				}
 			} else {
-				walkFn(filename, fileInfo, err)
+				if !fileInfo.IsDir() {
+					walkFn(filename, fileInfo, err)
+				}
 			}
 		}
 
