@@ -34,3 +34,5 @@ func main() {
 }
 
 ```
+
+[Go Playground Example](https://play.golang.org/p/MZRUJQDX7xS)
