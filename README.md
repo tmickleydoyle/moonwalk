@@ -2,7 +2,7 @@
 
 # MoonWalk: Walk to the Root Directory
 
-MoonWalk travels the file tree from a child directory back to the root directory calling walkFn for each file in the path back. The walkFn function will handle the errors from the visited files and return the name of the file with the path to the file.
+MoonWalk travels the file tree from a child directory back to the root directory calling walkFn for each file in the path back. The walkFn function will handle the errors from the visited files and return the name of the file with the path to the file. MoonWalk does not return paths with only directory names.
 
 Example:
 
