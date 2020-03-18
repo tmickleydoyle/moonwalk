@@ -2,7 +2,7 @@
 
 # MoonWalk: Walk to the Root Directory
 
-MoonWalk travels the file tree from a child directory back to the root directory calling walkFn for each file or direcory in the path back. The walkFn function will handle the errors from the visited files and directories.
+MoonWalk travels the file tree from a child directory back to the root directory calling walkFn for each file in the path back. The walkFn function will handle the errors from the visited files and return the name of the file with the path to the file.
 
 Example:
 
@@ -35,4 +35,4 @@ func main() {
 
 ```
 
-[Go Playground Example](https://play.golang.org/p/MZRUJQDX7xS)
+[Go Playground Example](https://play.golang.org/p/kKPNzXrAsGT)
