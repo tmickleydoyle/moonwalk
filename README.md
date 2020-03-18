@@ -38,4 +38,4 @@ func main() {
 
 ```
 
-[Go Playground Example](https://play.golang.org/p/Av0CtSmoimR)
+[Go Playground Example](https://play.golang.org/p/iwX6I3cMc3k)
