@@ -28,6 +28,11 @@ func TestMoonWalk(t *testing.T) {
 
 	tmpDir, err = ioutil.TempDir(tmpDir, "moonwalktest")
 
+	if err != nil {
+		t.Errorf("could not append new directory: %v\n", err)
+		return err
+	}
+
 	err = Slide(tmpDir, func(path string, info os.FileInfo, err error) error {
 
 		if err != nil {
@@ -44,6 +49,11 @@ func TestMoonWalk(t *testing.T) {
 
 func TestMoonWalkNoDir(t *testing.T) {
 	_, err := ioutil.TempDir("", "tempFolder")
+
+	if err != nil {
+		t.Errorf("could not create TempDir: %v\n", err)
+		return err
+	}
 
 	tmpDir := "."
 
