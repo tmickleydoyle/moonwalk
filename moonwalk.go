@@ -10,7 +10,6 @@ type WalkFunc func(path string, info os.FileInfo, err error) error
 
 var lstat   = os.Lstat
 
-
 func moonWalk(path string, info os.FileInfo, walkFn WalkFunc) error {
 	for path != string(os.PathSeparator) {
 
