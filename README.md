@@ -2,6 +2,7 @@
 [![Build Status](https://github.com/tmickleydoyle/moonwalk/workflows/build/badge.svg)](https://github.com/tmickleydoyle/moonwalk/actions)
 [![Coverage Status](https://coveralls.io/repos/github/tmickleydoyle/moonwalk/badge.svg?branch=master)](https://coveralls.io/github/tmickleydoyle/moonwalk?branch=master)
 [![Go ReportCard](http://goreportcard.com/badge/charmbracelet/glow)](http://goreportcard.com/report/tmickleydoyle/moonwalk)
+[![* Used By](https://sourcegraph.com/github.com/tmickleydoyle/moonwalk/-/badge.svg)](https://sourcegraph.com/github.com/tmickleydoyle/moonwalk?badge)
 
 # MoonWalk: Walk to the Root Directory
 
