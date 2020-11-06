@@ -1,43 +1,19 @@
-[![Latest Release](https://img.shields.io/github/release/tmickleydoyle/moonwalk.svg)](https://github.com/tmickleydoyle/moonwalk/releases)
-[![Build Status](https://github.com/tmickleydoyle/moonwalk/workflows/build/badge.svg)](https://github.com/tmickleydoyle/moonwalk/actions)
-[![Coverage Status](https://coveralls.io/repos/github/tmickleydoyle/moonwalk/badge.svg?branch=master)](https://coveralls.io/github/tmickleydoyle/moonwalk?branch=master)
-[![Go ReportCard](http://goreportcard.com/badge/charmbracelet/glow)](http://goreportcard.com/report/tmickleydoyle/moonwalk)
-[![* Used By](https://sourcegraph.com/github.com/tmickleydoyle/moonwalk/-/badge.svg)](https://sourcegraph.com/github.com/tmickleydoyle/moonwalk?badge)
-[![HitCount](http://hits.dwyl.com/tmickleydoyle/tmickleydoyle/moonwalk.svg)](http://hits.dwyl.com/tmickleydoyle/tmickleydoyle/moonwalk)
-
-# MoonWalk: Walk to the Root Directory
+# MoonWalk: Walk to the root directory
 
 `moonwalk` recursively walks the working directory back to the root returning all files in the walk back. `moonwalk` does not return paths with only directory names.
 
-Example:
+## Examples
 
-```go
-package main
+### Moonwalk from the current directory
 
-import (
-	"fmt"
-	"log"
-	"os"
+```bash
+$ moonwalk
+```
 
-	"github.com/tmickleydoyle/moonwalk"
-)
+### Moonwalk from a specific directory
 
-func main() {
-	err := moonwalk.Slide("/Users/tmickleydoyle/Desktop", func(path string, info os.FileInfo, err error) error {
-
-		if err != nil {
-			fmt.Printf("prevent panic by handling failure accessing a path %q: %v\n", path, err)
-			return err
-		}
-
-		fmt.Printf("visited file or dir: %q\n", path)
-		return nil
-	})
-	if err != nil {
-		log.Println(err)
-	}
-}
-
+```bash
+$ moonwalk -dir /Users/tmickleydoyle/Desktop
 ```
 
 Example Output
@@ -54,5 +30,3 @@ Example Output
 /Users/tmickleydoyle/blog.txt
 /Users/setup.txt
 ```
-
-[Go Playground Example](https://play.golang.org/p/iwX6I3cMc3k)

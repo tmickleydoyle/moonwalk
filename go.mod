@@ -1,3 +1,3 @@
 module github.com/tmickleydoyle/moonwalk
 
-go 1.14
+go 1.15
