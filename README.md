@@ -30,3 +30,11 @@ Example Output
 /Users/tmickleydoyle/blog.txt
 /Users/setup.txt
 ```
+
+## Installation
+
+Run the following command in the terminal.
+
+```bash
+$ go get github.com/tmickleydoyle/moonwalk
+```
