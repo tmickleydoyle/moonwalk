@@ -16,7 +16,7 @@ $ moonwalk
 $ moonwalk -path /Users/tmickleydoyle/Desktop
 ```
 
-_The path needs to be the absolute path to working directory._
+_The path needs to be the absolute path to the working directory._
 
 Example Output
 
