@@ -13,8 +13,10 @@ $ moonwalk
 ### Moonwalk from a specific directory
 
 ```bash
-$ moonwalk -dir /Users/tmickleydoyle/Desktop
+$ moonwalk -path /Users/tmickleydoyle/Desktop
 ```
+
+_The path needs to be the absolute path to working directory._
 
 Example Output
 
