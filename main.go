@@ -15,7 +15,7 @@ var (
 )
 
 func main() {
-	flag.StringVar(&dir, "dir", "", "starting point")
+	flag.StringVar(&dir, "path", "", "starting point")
 	flag.Parse()
 
 	if dir != "" {
