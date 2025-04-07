@@ -7,6 +7,7 @@ import (
 	"os"
 
 	slide "github.com/tmickleydoyle/moonwalk/slide"
+	"github.com/fatih/color"
 )
 
 var (
@@ -31,7 +32,12 @@ func main() {
 			return err
 		}
 
-		fmt.Printf("%q\n", path)
+		// Add metadata indicating if it's a file or directory with colors
+		if info.IsDir() {
+			color.Cyan("[Directory] %q", path)
+		} else {
+			color.Green("[File] %q", path)
+		}
 		return nil
 	})
 	if err != nil {
