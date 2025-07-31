@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -26,6 +25,7 @@ var (
 	showSize   bool
 	summary    bool
 	maxDepth   int
+	interactive bool
 )
 
 // FileInfo holds information about a file for output formatting
@@ -59,6 +59,7 @@ func main() {
 	flag.BoolVar(&showSize, "size", false, "show file sizes")
 	flag.BoolVar(&summary, "summary", false, "show summary statistics")
 	flag.IntVar(&maxDepth, "depth", -1, "maximum directory depth (-1 for unlimited)")
+	flag.BoolVar(&interactive, "tui", false, "run in interactive TUI mode")
 	flag.Parse()
 
 	if dir != "" {
@@ -70,6 +71,15 @@ func main() {
 	// Add a dot to extension if needed and not empty
 	if extension != "" && !strings.HasPrefix(extension, ".") {
 		extension = "." + extension
+	}
+
+	// Run TUI mode if requested
+	if interactive {
+		if err := runTUI(); err != nil {
+			log.Println("TUI error:", err)
+			os.Exit(1)
+		}
+		return
 	}
 
 	// Create slices to store files and directories
@@ -114,7 +124,7 @@ func main() {
 
 			// Search within files if requested
 			if search != "" && !info.IsDir() {
-				content, err := ioutil.ReadFile(path)
+				content, err := os.ReadFile(path)
 				if err == nil {
 					if strings.Contains(string(content), search) {
 						fileInfo.SearchHit = true

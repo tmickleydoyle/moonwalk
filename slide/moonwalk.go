@@ -1,7 +1,6 @@
 package moonwalk
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 )
@@ -20,7 +19,7 @@ func moonWalk(path string, info os.FileInfo, walkFn WalkFunc, extension string, 
 			return nil
 		}
 
-		names, err := ioutil.ReadDir(path)
+		names, err := os.ReadDir(path)
 
 		if err != nil {
 			return err
@@ -28,7 +27,10 @@ func moonWalk(path string, info os.FileInfo, walkFn WalkFunc, extension string, 
 
 		for _, name := range names {
 			filename := filepath.Join(path, name.Name())
-			fileInfo, err := lstat(filename)
+			fileInfo, err := name.Info()
+			if err != nil {
+				fileInfo, err = lstat(filename)
+			}
 
 			// Filter by extension if specified
 			if extension != "" && !fileInfo.IsDir() {
